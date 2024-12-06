@@ -9,7 +9,7 @@ for i in range(1, 4):
 
 print("***FILE MANAGING SYSTEM***")
 diretory = "C:/System/System32/Windows"
-command_list = ["remove", "move", "add"]
+command_list = ["remove", "move", "write"]
 
 def Find_file():
     global Target
@@ -17,11 +17,24 @@ def Find_file():
     diretory = "C:/System/System32/Windows"
     Target = input(f"{diretory}: ")
     try:
-        os.remove(f"D://code//python//filemanagementtest//{Target}")
-        print(f"{Target} has been succesfully removed!")
+        os.remove(f"D:\code\python\ilemanagementtest\ilemangementv2\ilelist\{Target}")
+        print(f"{Target} has been succesfully deleted!!!")
     except FileNotFoundError:
         print(f"{Target} does not exists")
-   
+
+def Find_edit_file():
+    global File_name
+    global content
+    diretory = "C:/System/System32/Windows"
+    File_name= input(f"{diretory}: ")
+    content = input("Enter content(Optional): ")
+    try:
+        with open(f"D:\code\python\ilemanagementtest\ilemangementv2\ilelist\{File_name}", "w") as file: 
+            file.write(content)
+            print(f"{File_name} has been succesfully edited!")
+    except FileNotFoundError:
+        print(f"{File_name} does not exists")
+
 while True: 
     print("What do you wish to do?:")
     Command = input("Command: ")
@@ -29,28 +42,9 @@ while True:
         print("Error, unknown command")
     else:
         if Command == "remove":
-            Check = False
-            while Check == False:
-                Find_file()
-            os.remove(Target)
+            Find_file()
         elif Command == "move":
+            print("this function can't work yet!!")
             pass
         else:
-            try:
-                File_name = input("Enter the new text file name here: ")
-                content = input("Enter content(Optional): ")
-                with open(File_name, "w") as file: 
-                    file.write(content)
-                print(f"'{File_name} has been created succesfully'")
-            except FileExistsError:
-                print(f"The file {File_name} already exists")
-                
-
-            
-    
-
-    
-    
-    
-
-        
+            Find_edit_file()    
